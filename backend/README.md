@@ -166,15 +166,68 @@ curl -X DELETE http://localhost:3000/api/productos/1
 2. Ejecutar en orden: Listar → Crear válido → Obtener :id → Buscar → Actualizar → Eliminar.
 3. Casos de error incluidos: 400 sin nombre, precio 0, stock -1; 404 id 9999 para GET/PUT/DELETE; búsqueda sin coincidencias → 200 [].
 
-Evidencias a capturar:
-- GET lista
-- GET por ID (200)
-- GET por ID inexistente (404)
-- POST válido (201) + verificación `SELECT * FROM Productos;`
-- POST inválido (400)
-- PUT válido (200) + verificación SELECT
-- DELETE (200) + verificación SELECT
-- Buscar con y sin resultados (200)
+### Dónde poner las capturas (OBLIGATORIO README)
+
+Guarda tus capturas PNG/JPG en **`backend/docs/images/`** (esta carpeta ya está creada) y también puedes duplicarlas en `docs/images/` en la raíz. **No las pongas en `node_modules` ni las ignores con `.gitignore`**.
+
+Nombres sugeridos (respeta exactamente para que el README las encuentre):
+```
+backend/docs/images/01_get_productos.png        → GET /api/productos
+backend/docs/images/02_get_por_id.png           → GET /api/productos/:id (200)
+backend/docs/images/03_get_404.png              → GET /api/productos/9999 (404)
+backend/docs/images/04_post_201.png             → POST /api/productos (201)
+backend/docs/images/05_post_400.png             → POST sin nombre / precio 0 (400)
+backend/docs/images/06_put_200.png              → PUT /api/productos/:id (200)
+backend/docs/images/07_delete_200.png           → DELETE /api/productos/:id (200)
+backend/docs/images/08_buscar_con.png           → GET /buscar?nombre=Laptop (200 con datos)
+backend/docs/images/09_buscar_vacio.png         → GET /buscar?nombre=XYZ (200 [])
+backend/docs/images/10_sql_select.png           → SSMS/sqlcmd SELECT * FROM Productos
+backend/docs/images/11_sql_post_put_delete.png  → SELECT después de POST/PUT/DELETE
+```
+
+En el README se referencian así (ruta relativa desde `backend/README.md`):
+```markdown
+![GET Productos](docs/images/01_get_productos.png)
+```
+
+## Evidencias
+
+> **Captura cada caso y reemplaza los placeholders de abajo. Las imágenes deben ser legibles (Postman: método, URL, status y body visibles; SSMS: query y grid visibles).**
+
+### Postman — 6 endpoints + casos de error
+![GET Productos](docs/images/01_get_productos.png)
+*GET /api/productos → 200*
+
+![GET por ID](docs/images/02_get_por_id.png)
+*GET /api/productos/1 → 200*
+
+![GET 404](docs/images/03_get_404.png)
+*GET /api/productos/9999 → 404 { mensaje: "Producto no encontrado" }*
+
+![POST 201](docs/images/04_post_201.png)
+*POST /api/productos → 201*
+
+![POST 400](docs/images/05_post_400.png)
+*POST sin nombre / precio <=0 → 400*
+
+![PUT 200](docs/images/06_put_200.png)
+*PUT /api/productos/1 → 200*
+
+![DELETE 200](docs/images/07_delete_200.png)
+*DELETE /api/productos/1 → 200*
+
+![Buscar con resultados](docs/images/08_buscar_con.png)
+*GET /buscar?nombre=Laptop → 200*
+
+![Buscar vacío](docs/images/09_buscar_vacio.png)
+*GET /buscar?nombre=XYZ → 200 []* 
+
+### SQL Server — persistencia real
+![SELECT Productos](docs/images/10_sql_select.png)
+*`SELECT * FROM Productos;` después de POST*
+
+![SELECT tras PUT/DELETE](docs/images/11_sql_post_put_delete.png)
+*`SELECT * FROM Productos;` refleja PUT y DELETE (sin array en memoria)*
 
 ## Verificación de persistencia real
 
