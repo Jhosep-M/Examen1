@@ -1,0 +1,31 @@
+{
+  "name": "backend-gestion-productos",
+  "version": "1.0.0",
+  "description": "Backend Gestión de Productos - Primer Parcial Práctico Programación Web II - UDS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "express",
+    "sequelize",
+    "mssql",
+    "productos",
+    "crud"
+  ],
+  "author": "Emerson Mollo (Jhosep-M) - Programación Web II - UPDS",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mssql": "^12.7.2",
+    "msnodesqlv8": "^5.5.0",
+    "sequelize": "^6.37.8",
+    "tedious": "^20.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
