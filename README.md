@@ -35,26 +35,7 @@ cp .env.example .env
 # Editar .env con tus credenciales
 ```
 
-**Para LocalDB (Windows, por defecto en laboratorio):**
-```ini
-DB_HOST=(localdb)\MSSQLLocalDB
-DB_USER=(localdb)\MSSQLLocalDB
-DB_PASSWORD=
-DB_NAME=WEB2DB
-DB_PORT=1433
-PORT=3000
-```
 
-**Para SQL Server con usuario SQL:**
-```ini
-DB_HOST=localhost
-DB_USER=sa
-DB_PASSWORD=tuContraseña123
-DB_NAME=WEB2DB
-DB_PORT=1433
-# DB_INSTANCE=SQLEXPRESS   # descomentar si usas instancia con nombre
-PORT=3000
-```
 
 ### 3. Crear la base de datos
 
@@ -107,7 +88,7 @@ Probar salud: `GET http://localhost:3000/` → 200 con info de endpoints.
 **Nota de rutas:** `/buscar` está declarado **antes** que `/:id` en `productoRoutes.js` para que Express no interprete `buscar` como id.
 
 
-```
+
 
 ## Pruebas en Postman
 
@@ -145,18 +126,5 @@ Debe reflejar exactamente el estado tras la operación Postman, demostrando que 
 ```
 Petición HTTP → Express (cors, json) → Route (/api/productos) → Controller → Model (Sequelize) → SQL Server
 ```
-
-## Checklist de rúbrica
-
-- [x] Estructura exacta `backend/` con 8 archivos base
-- [x] Sin arrays/mocks, todo vía Sequelize
-- [x] `.env` en `.gitignore`, existe `.env.example`
-- [x] 6 endpoints con códigos correctos y persistencia real
-- [x] Validaciones nombre/precio/stock → 400
-- [x] `buscar` antes de `:id`
-- [x] README completo
-- [x] script.sql incluido
-- [x] Colección Postman incluida
-- [x] `sequelize.authenticate()` + `sync()` con logs claros
 
 
